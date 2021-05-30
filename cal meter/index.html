@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div id="content">
+        <p id="heading">Calorie Counter</p>
+
+        <div id="app">
+            <table>
+                <thead class="names">
+                    <td>Description</td>
+                    <td>Calories</td>
+                    <td>Fat</td>
+                    <td>Carbs</td>
+                    <td>Protein</td>
+                </thead>
+                <tbody>
+                    <tr v-for="(product, index) in productList">
+                        <td><input class="inputing" type="text" v-bind:value="product.name"></td>
+                        <td><input class="inputing" v-on:keyup="dataChanged" type="number" v-model="product.cal"></td>
+                        <td><input class="inputing" v-on:keyup="dataChanged" type="number" v-model="product.fat"></td>
+                        <td><input class="inputing" v-on:keyup="dataChanged" type="number" v-model="product.car"></td>
+                        <td><input class="inputing" v-on:keyup="dataChanged" type="number" v-model="product.pro"></td>
+                        <td><button @click="removeProd(index)">x</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div id="bottom">
+                <div class="totals"><span id="totals">Totals:</span>
+                    <span>{{ totalsCalc.cal }}</span>
+                    <span>{{ totalsCalc.fat }}</span>
+                    <span>{{ totalsCalc.car }}</span>
+                    <span>{{ totalsCalc.pro }}</span>
+                </div>
+                <div class="new">
+                    <input class="inputing" type="text" v-model="newProd.name" placeholder="Product name">
+                    <input class="inputing" type="text" v-model="newProd.cal" placeholder="calories">
+                    <input class="inputing" type="text" v-model="newProd.fat" placeholder="fat">
+                    <input class="inputing" type="text" v-model="newProd.car" placeholder="carbs">
+                    <input class="inputing" type="text" v-model="newProd.pro" placeholder="protein">
+                    <button @click="addNewProd">+</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
